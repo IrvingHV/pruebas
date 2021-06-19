@@ -1,3 +1,47 @@
+CREATE DATABASE pruebas;
+
+USE pruebas;
+
+CREATE table costos(
+tipoDeLlamada varchar(15),
+costo decimal(10,4));
+
+CREATE table LogDial(
+idLlamada varchar(10),
+fechaDeLlamada dateTime,
+tiempoDialogo smallint,
+telefono varchar(10),
+tipoDeLlamada varchar(15));
+
+
+INSERT INTO LogDial
+           (idLlamada
+           ,fechaDeLlamada
+           ,tiempoDialogo
+           ,telefono
+           ,tipoDeLlamada)
+     
+VALUES	('197463','2020-01-01', '60', '8000000001', 'CelLD')
+VALUES	('197464','2020-01-02', '60', '8000000002', 'CelLD')
+VALUES	('197465','2020-01-03', '240', '8000000003', 'CelLD')
+.
+.
+.
+.
+.
+.
+.
+.
+.
+VALUES	('197591','2020-05-08', '120', '8000000129', 'CelLD')
+
+
+INSERT INTO costos(tipoDeLlamada, costo)
+VALUES ('Cel', '0.4')
+VALUES ('LD_nacional', '0.12')
+VALUES ('Cel_LD', '0.5')
+
+
 1-  select * from LogDial
 where fechaDeLlamada between '20200201' and '20200229' and tipoDeLlamada='CelLD';
 GO
@@ -8,28 +52,3 @@ GO
 3.-select tiempoDialogo= '0' + CAST( 90/60 as varchar(2)) + ':' +  CAST( 90%60 as varchar(2)), costo
 from LogDial, costos
 where fechaDeLlamada between '20200101' and '20200130';
-
-
-
-USE [Prueba_2]
-GO
-
-INSERT INTO [dbo].[LogDial]
-           ([idLlamada]
-           ,[fechaDeLlamada]
-           ,[tiempoDialogo]
-           ,[telefono]
-           ,[tipoDeLlamada])
-     VALUES
-		   ('197501','02-07-2020', '95', '8000000055', 'CelLD')
-
-CREATE table costos(
-tipoDeLlamada varchar(15),
-costo decimal(10,4));
-
-INSERT INTO costos(tipoDeLlamada, costo)
-VALUES ('Cel_LD', '0.5');
-
-
-INSERT INTO LogDial(idLlamada, costo)
-VALUES ('Cel_LD', '0.5');
