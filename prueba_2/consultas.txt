@@ -1,0 +1,35 @@
+1-  select * from LogDial
+where fechaDeLlamada between '20200201' and '20200229' and tipoDeLlamada='CelLD';
+GO
+2-
+select AVG(ALL tiempoDialogo) from LogDial
+where fechaDeLlamada between '20200201' and '20200229' and tipoDeLlamada='CelLD';
+GO
+3.-select tiempoDialogo= '0' + CAST( 90/60 as varchar(2)) + ':' +  CAST( 90%60 as varchar(2)), costo
+from LogDial, costos
+where fechaDeLlamada between '20200101' and '20200130';
+
+
+
+USE [Prueba_2]
+GO
+
+INSERT INTO [dbo].[LogDial]
+           ([idLlamada]
+           ,[fechaDeLlamada]
+           ,[tiempoDialogo]
+           ,[telefono]
+           ,[tipoDeLlamada])
+     VALUES
+		   ('197501','02-07-2020', '95', '8000000055', 'CelLD')
+
+CREATE table costos(
+tipoDeLlamada varchar(15),
+costo decimal(10,4));
+
+INSERT INTO costos(tipoDeLlamada, costo)
+VALUES ('Cel_LD', '0.5');
+
+
+INSERT INTO LogDial(idLlamada, costo)
+VALUES ('Cel_LD', '0.5');
